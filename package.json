@@ -1,0 +1,16 @@
+{
+  "name": "unified-nuxt-ui",
+  "type": "module",
+  "version": "0.0.1",
+  "main": "./nuxt.config.ts",
+  "scripts": {
+    "postinstall": "nuxt prepare .playground",
+    "dev": "nuxi dev .playground",
+    "dev:prepare": "nuxt prepare .playground"
+  },
+  "devDependencies": {
+    "nuxt": "latest",
+    "typescript": "latest",
+    "vue": "latest"
+  }
+}
