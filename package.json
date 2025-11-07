@@ -12,6 +12,10 @@
     "dev": "nuxi dev .playground --port 8080",
     "build": "nuxi build .playground"
   },
+  "dependencies": {
+    "@iconify-json/lucide": "1.2.72",
+    "@nuxt/ui": "4.1.0"
+  },
   "devDependencies": {
     "nuxt": "latest",
     "typescript": "latest",
