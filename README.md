@@ -1,6 +1,6 @@
 # Unified Nuxt UI
 
-Create Nuxt extendable layer with this GitHub template.
+A reuseable Nuxt layer which integrates Nuxt UI and some other useful libraries into your Nuxt application.
 
 ## Setup
 

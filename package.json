@@ -2,11 +2,15 @@
   "name": "unified-nuxt-ui",
   "type": "module",
   "version": "0.0.1",
-  "main": "./nuxt.config.ts",
+  "main": "./nuxt.config.js",
+  "files": [
+    "nuxt.config.js",
+    "package.json"
+  ],
   "scripts": {
-    "postinstall": "nuxt prepare .playground",
-    "dev": "nuxi dev .playground",
-    "dev:prepare": "nuxt prepare .playground"
+    "postinstall": "nuxi prepare .playground",
+    "dev": "nuxi dev .playground --port 8080",
+    "build": "nuxi build .playground"
   },
   "devDependencies": {
     "nuxt": "latest",
