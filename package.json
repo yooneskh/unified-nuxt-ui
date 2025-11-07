@@ -8,17 +8,25 @@
     "package.json"
   ],
   "scripts": {
-    "postinstall": "nuxi prepare .playground",
-    "dev": "nuxi dev .playground --port 8080",
-    "build": "nuxi build .playground"
+    "postinstall": "nuxt prepare .playground",
+    "dev": "nuxt dev .playground --port 8080",
+    "build": "nuxt build .playground"
   },
   "dependencies": {
+    "@formkit/tempo": "0.1.2",
     "@iconify-json/lucide": "1.2.72",
-    "@nuxt/ui": "4.1.0"
+    "@nuxt/ui": "4.1.0",
+    "@vueuse/core": "14.0.0",
+    "@vueuse/nuxt": "14.0.0",
+    "nuxt-radash": "1.0.0",
+    "unified-mongo-filter": "0.4.0"
   },
   "devDependencies": {
     "nuxt": "latest",
     "typescript": "latest",
     "vue": "latest"
+  },
+  "patchedDependencies": {
+    "nuxt-radash@1.0.0": "patches/nuxt-radash@1.0.0.patch"
   }
 }
