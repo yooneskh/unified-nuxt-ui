@@ -1,4 +1,4 @@
-@import "tailwindcss";
+@import "tailwindcss" source("../../..");
 @import "@nuxt/ui";
 
 
@@ -16,7 +16,7 @@
 /* fixes */
 
 body {
-  @apply !overflow-y-auto !ps-0;
+  @apply overflow-y-auto! ps-0!;
 }
 
 table thead tr th {

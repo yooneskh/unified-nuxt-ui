@@ -60,7 +60,7 @@ const inputTitle = computed(() => {
     <template #content>
 
       <u-calendar
-        class="ltr p-2 [&_th]:!text-center"
+        class="ltr p-2 [&_th]:text-center!"
         v-model="internalModel"
       />
 

@@ -15,18 +15,24 @@ const props = defineProps({
   text: {
     type: String,
   },
-  fields: {
+  startButtons: {
     type: Array,
-    required: true,
+    default: () => [
+      {
+        label: 'Submit',
+        value: true,
+      }
+    ],
   },
-  initialForm: {
-    type: Object,
-  },
-  submitButton: {
-    type: Object,
-  },
-  cancelButton: {
-    type: Object,
+  endButtons: {
+    type: Array,
+    default: () => [
+      {
+        variant: 'ghost',
+        label: 'Cancel',
+        value: false,
+      }
+    ],
   },
 });
 
@@ -35,23 +41,15 @@ const emit = defineEmits([
 ]);
 
 
-/* form */
-
-const { form, formTag } = useForm({
-  target: !props.initialForm ? undefined : JSON.parse(JSON.stringify(props.initialForm)),
-  fields: () => props.fields,
-});
-
-
 /* actions */
 
-async function handleSubmit() {
+async function handleButtonClick(button) {
 
-  if (props.submitButton?.onClick) {
-    await props.submitButton?.onClick(form.value);
+  if (button.onClick) {
+    await button.onClick(button.value);
   }
 
-  emit('close', form.value);
+  emit('close', button.value);
 
 }
 
@@ -70,27 +68,22 @@ async function handleSubmit() {
           :text="props.text"
         />
 
-        <form-tag
-          class="mt-4"          
-        />
-
         <div class="flex items-end gap-2 mt-4">
 
           <u-button
-            label="Submit"
-            v-bind="radOmit(props.submitButton, [ 'onClick' ])"
+            v-for="button of props.startButtons" :key="button.value || button.label || button.icon"
+            v-bind="radOmit(button, [ 'value', 'onClick' ])"
             loading-auto
-            @click="handleSubmit()"
+            @click="handleButtonClick(button)"
           />
 
           <div class="grow" />
 
           <u-button
-            variant="soft"
-            label="Cancel"
-            v-bind="radOmit(props.cancelButton, [ 'onClick' ])"
+            v-for="button of props.endButtons" :key="button.value || button.label || button.icon"
+            v-bind="radOmit(button, [ 'value', 'onClick' ])"
             loading-auto
-            @click="emit('close')"
+            @click="handleButtonClick(button)"
           />
 
         </div>

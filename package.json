@@ -1,7 +1,7 @@
 {
-  "name": "unified-nuxt-ui",
+  "name": "nuxt-unified-ui",
   "type": "module",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "main": "./nuxt.config.js",
   "files": [
     "nuxt.config.js",

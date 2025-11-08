@@ -23,10 +23,4 @@ export default defineNuxtConfig({
     colorMode: false,
   },
 
-  extends: [
-    './layers/unified-toast',
-    './layers/unified-dialog',
-    './layers/unified-form',
-  ],
-
 });

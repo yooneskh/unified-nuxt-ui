@@ -15,24 +15,18 @@ const props = defineProps({
   text: {
     type: String,
   },
-  startButtons: {
+  fields: {
     type: Array,
-    default: () => [
-      {
-        label: 'Submit',
-        value: true,
-      }
-    ],
+    required: true,
   },
-  endButtons: {
-    type: Array,
-    default: () => [
-      {
-        variant: 'soft',
-        label: 'Cancel',
-        value: false,
-      }
-    ],
+  initialForm: {
+    type: Object,
+  },
+  submitButton: {
+    type: Object,
+  },
+  cancelButton: {
+    type: Object,
   },
 });
 
@@ -41,15 +35,23 @@ const emit = defineEmits([
 ]);
 
 
+/* form */
+
+const { form, formTag } = useForm({
+  target: !props.initialForm ? undefined : JSON.parse(JSON.stringify(props.initialForm)),
+  fields: () => props.fields,
+});
+
+
 /* actions */
 
-async function handleButtonClick(button) {
+async function handleSubmit() {
 
-  if (button.onClick) {
-    await button.onClick(button.value);
+  if (props.submitButton?.onClick) {
+    await props.submitButton?.onClick(form.value);
   }
 
-  emit('close', button.value);
+  emit('close', form.value);
 
 }
 
@@ -68,22 +70,27 @@ async function handleButtonClick(button) {
           :text="props.text"
         />
 
+        <form-tag
+          class="mt-4"          
+        />
+
         <div class="flex items-end gap-2 mt-4">
 
           <u-button
-            v-for="button of props.startButtons" :key="button.value || button.label || button.icon"
-            v-bind="radOmit(button, [ 'value', 'onClick' ])"
+            label="Submit"
+            v-bind="radOmit(props.submitButton, [ 'onClick' ])"
             loading-auto
-            @click="handleButtonClick(button)"
+            @click="handleSubmit()"
           />
 
           <div class="grow" />
 
           <u-button
-            v-for="button of props.endButtons" :key="button.value || button.label || button.icon"
-            v-bind="radOmit(button, [ 'value', 'onClick' ])"
+            variant="ghost"
+            label="Cancel"
+            v-bind="radOmit(props.cancelButton, [ 'onClick' ])"
             loading-auto
-            @click="handleButtonClick(button)"
+            @click="emit('close')"
           />
 
         </div>
