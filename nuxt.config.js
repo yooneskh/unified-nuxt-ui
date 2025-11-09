@@ -1,4 +1,8 @@
-import { pathRelativeToBase } from './app/utils/path-relative';
+
+
+export {
+  pathRelativeToBase,
+} from './app/utils/path-relative';
 
 
 export default defineNuxtConfig({
@@ -13,10 +17,6 @@ export default defineNuxtConfig({
   modules: [
     '@vueuse/nuxt',
     '@nuxt/ui',
-  ],
-
-  css: [
-    pathRelativeToBase(import.meta.url, './app/assets/css/main.css'),
   ],
 
   ui: {
