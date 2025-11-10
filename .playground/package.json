@@ -1,5 +1,5 @@
 {
-  "name": "unified-nuxt-ui-playground",
+  "name": "nuxt-unified-ui-playground",
   "type": "module",
   "version": "0.0.1",
   "scripts": {
@@ -9,6 +9,6 @@
   },
   "dependencies": {
     "nuxt": "4.2.1",
-    "unified-nuxt-ui": "file:../"
+    "nuxt-unified-ui": "file:../"
   }
 }

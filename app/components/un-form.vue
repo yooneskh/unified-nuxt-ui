@@ -11,6 +11,7 @@ const props = defineProps({
 /* elements */
 
 import FormElementText from '../elements/form-element-text.vue';
+import FormElementTextarea from '../elements/form-element-textarea.vue';
 import FormElementSelect from '../elements/form-element-select.vue';
 import FormElementSeries from '../elements/form-element-series.vue';
 import FormElementCheckbox from '../elements/form-element-checkbox.vue';
@@ -19,6 +20,7 @@ import FormElementDate from '../elements/form-element-date.vue';
 
 const elementsMap = {
   'text': FormElementText,
+  'textarea': FormElementTextarea,
   'select': FormElementSelect,
   'series': FormElementSeries,
   'date': FormElementDate,
