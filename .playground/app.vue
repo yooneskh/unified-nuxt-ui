@@ -211,6 +211,26 @@ async function openFormPickerDialog() {
         ]"
       />
 
+      <div />
+
+      <un-card
+        icon="lucide:star"
+        title="Tailwinds"
+        subtitle="Utility Classes"
+      />
+
+      <un-card
+        icon="lucide:star"
+        title="Nuxt"
+        subtitle="Meta Framework"
+      />
+
+      <un-card
+        icon="lucide:star"
+        title="Vue"
+        subtitle="Framework"
+      />
+
     </div>
   </u-app>
 </template>
