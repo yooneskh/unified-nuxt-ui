@@ -24,7 +24,7 @@ const props = defineProps({
 
 
 <template>
-  <u-card :ui="{ body: 'p-0' }">
+  <u-card :ui="{ body: 'p-0 sm:p-0 divide-y divide-default' }">
 
     <un-typography
       :icon="props.icon"
@@ -33,7 +33,7 @@ const props = defineProps({
       :icon-classes="props.iconClasses"
       :title-classes="props.titleClasses"
       :subtitle-classes="props.subtitleClasses"
-      class="p-3 border-b border-default">
+      class="p-3">
       <template v-if="$slots.append" #append>
         <slot name="append" />
       </template>
@@ -62,7 +62,7 @@ const props = defineProps({
 
     <div
       v-if="props.actions?.length"
-      class="flex items-end gap-1 p-2 border-t border-default"
+      class="flex items-end gap-1 p-2"
       :class="{
         'flex-col': props.verticalActions,
       }">
