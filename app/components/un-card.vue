@@ -1,24 +1,30 @@
-<script setup>
+<script setup lang="ts">
 
 /* interface */
 
-const props = defineProps({
+import type { ButtonProps } from '@nuxt/ui';
 
-  icon: String,
-  title: String,
-  subtitle: String,
-  text: String,
-  iconClasses: String,
-  titleClasses: String,
-  subtitleClasses: String,
-  textClasses: String,
 
-  fluidBody: Boolean,
+const props = defineProps<{
 
-  actions: Array,
-  verticalActions: Boolean,
+  icon?: string;
+  title?: string;
+  subtitle?: string;
+  text?: string;
+  iconClasses?: string;
+  titleClasses?: string;
+  subtitleClasses?: string;
+  textClasses?: string;
 
-});
+  fluidBody?: boolean;
+
+  actions?: ( ButtonProps & { actionType?: 'button' | 'spacer' } )[];
+  verticalActions?: boolean;
+
+}>();
+
+
+const slots = useSlots();
 
 </script>
 
@@ -34,13 +40,13 @@ const props = defineProps({
       :title-classes="props.titleClasses"
       :subtitle-classes="props.subtitleClasses"
       class="p-3">
-      <template v-if="$slots.append" #append>
+      <template v-if="slots.append" #append>
         <slot name="append" />
       </template>
     </un-typography>
 
     <div
-      v-if="$slots.default || props.text"
+      v-if="slots.default || props.text"
       :class="{
         'p-3': !props.fluidBody,
       }">
@@ -49,7 +55,7 @@ const props = defineProps({
         v-if="props.text"
         :class="[
           {
-            'mb-3': !!$slots.default,
+            'mb-3': !!slots.default,
           },
           props.textClasses,
         ]">
