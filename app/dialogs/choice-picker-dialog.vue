@@ -44,13 +44,8 @@ const emit = defineEmits([
 /* actions */
 
 async function handleButtonClick(button) {
-
-  if (button.onClick) {
-    await button.onClick(button.value);
-  }
-
+  await button.onClick?.(button.value);
   emit('close', button.value);
-
 }
 
 </script>
@@ -59,36 +54,25 @@ async function handleButtonClick(button) {
 <template>
   <u-modal @update:open="!$event && emit('close')">
     <template #content>
-      <u-card>
-
-        <un-typography
-          :icon="props.icon"
-          :title="props.title"
-          :subtitle="props.subtitle"
-          :text="props.text"
-        />
-
-        <div class="flex items-end gap-2 mt-4">
-
-          <u-button
-            v-for="button of props.startButtons" :key="button.value || button.label || button.icon"
-            v-bind="radOmit(button, [ 'value', 'onClick' ])"
-            loading-auto
-            @click="handleButtonClick(button)"
-          />
-
-          <div class="grow" />
-
-          <u-button
-            v-for="button of props.endButtons" :key="button.value || button.label || button.icon"
-            v-bind="radOmit(button, [ 'value', 'onClick' ])"
-            loading-auto
-            @click="handleButtonClick(button)"
-          />
-
-        </div>
-
-      </u-card>
+      <un-card
+        :icon="props.icon"
+        :title="props.title"
+        :subtitle="props.subtitle"
+        :text="props.text"
+        :actions="[
+          ...(props.startButtons || []).map(button => ({
+            ...button,
+            onClick: () => handleButtonClick(button),
+          })),
+          {
+            actionType: 'spacer',
+          },
+          ...(props.endButtons || []).map(button => ({
+            ...button,
+            onClick: () => handleButtonClick(button),
+          })),
+        ]"
+      />
     </template>
   </u-modal>
 </template>

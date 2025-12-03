@@ -46,13 +46,8 @@ const { form, formTag } = useForm({
 /* actions */
 
 async function handleSubmit() {
-
-  if (props.submitButton?.onClick) {
-    await props.submitButton?.onClick(form.value);
-  }
-
+  await props.submitButton?.onClick?.(form.value);
   emit('close', form.value);
-
 }
 
 </script>
@@ -61,41 +56,31 @@ async function handleSubmit() {
 <template>
   <u-modal @update:open="!$event && emit('close')">
     <template #content>
-      <u-card>
-        
-        <un-typography
-          :icon="props.icon"
-          :title="props.title"
-          :subtitle="props.subtitle"
-          :text="props.text"
-        />
-
-        <form-tag
-          class="mt-4"          
-        />
-
-        <div class="flex items-end gap-2 mt-4">
-
-          <u-button
-            label="Submit"
-            v-bind="radOmit(props.submitButton, [ 'onClick' ])"
-            loading-auto
-            @click="handleSubmit()"
-          />
-
-          <div class="grow" />
-
-          <u-button
-            variant="ghost"
-            label="Cancel"
-            v-bind="radOmit(props.cancelButton, [ 'onClick' ])"
-            loading-auto
-            @click="emit('close')"
-          />
-
-        </div>
-
-      </u-card>
+      <un-card
+        :icon="props.icon"
+        :title="props.title"
+        :subtitle="props.subtitle"
+        :text="props.text"
+        :actions="[
+          {
+            label: 'Submit',
+            ...props.submitButton,
+            loadingAuto: true,
+            onClick: handleSubmit,
+          },
+          {
+            actionType: 'spacer',
+          },
+          {
+            variant: 'ghost',
+            label: 'Cancel',
+            ...props.cancelButton,
+            loadingAuto: true,
+            onClick: () => emit('close'),
+          },
+        ]">
+        <form-tag />
+      </un-card>
     </template>
   </u-modal>
 </template>
